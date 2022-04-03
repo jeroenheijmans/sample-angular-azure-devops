@@ -73,11 +73,13 @@ stages:
     - job: Deployment
       dependsOn: ManualValidation
       steps:
+      - checkout: none
+
       - download: current
         displayName: 'Download AngularApp'
         artifact: AngularApp
       
-      - pwsh: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace)
+      - powershell: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace)
         displayName: 'Show folder contents for debugging'
       
       # TODO: Actual deployment
