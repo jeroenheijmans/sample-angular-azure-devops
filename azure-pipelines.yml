@@ -10,12 +10,25 @@ trigger:
       - '*.md'
       - 'LICENSE'
 
+pr:
+  drafts: false
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - '.gitignore'
+      - '.vscode/*.*'
+      - '*.md'
+      - 'LICENSE'
+
 pool:
   vmImage: ubuntu-latest
 
 variables:
   node_version: '16.x'
   npm_config_cache: $(Pipeline.Workspace)/.npm
+  is_main: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
 stages:
   - stage: build
@@ -57,7 +70,7 @@ stages:
             codeCoverageTool: 'Cobertura'
             summaryFileLocation: '$(Build.SourcesDirectory)/coverage/**/cobertura-coverage.xml'
 
-        - script: npm run build -- --source-map=true
+        - script: npm run build -- --source-map=$(is_main)
           displayName: 'Angular build'
           
         - publish: '$(Build.SourcesDirectory)/dist/foo'
