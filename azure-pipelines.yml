@@ -74,7 +74,7 @@ stages:
             codeCoverageTool: 'Cobertura'
             summaryFileLocation: '$(Build.SourcesDirectory)/coverage/**/cobertura-coverage.xml'
 
-        - script: npm run build -- --source-map=$[lower(variables['is_main'])]
+        - script: npm run build -- --source-map=${{ lower(variables.is_main) }}
           displayName: 'Angular build'
           
         - publish: '$(Build.SourcesDirectory)/dist/foo'
