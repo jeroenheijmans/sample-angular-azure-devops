@@ -55,14 +55,19 @@ stages:
   - stage: deployment
     displayName: Deployment
     jobs:
-    - job: Deployment
+    - job: ManualIntervention
+      displayName: Manual Intervention
+      pool: server
+      timeoutInMinutes: 1440 # 24 hours
       steps:
       - task: ManualIntervention@8
         displayName: 'Manual intervention'
         inputs:
           instructions: 'Please approve continuation of the pipeline using common sense.'
           emailRecipients: 'sample-angular-azure-devops@jeroenheijmans.nl'
-      
+
+    - job: Deployment
+      steps:
       - download: current
         displayName: 'Download AngularApp'
         artifact: AngularApp
