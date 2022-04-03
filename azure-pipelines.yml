@@ -25,6 +25,9 @@ stages:
             key: 'npm | "$(Agent.OS)" | "$(node_version)" | package-lock.json'
             path: $(npm_config_cache)
 
+        - script: npm cache verify
+          displayName: 'NPM Cache verification'
+
         - script: npm ci
           displayName: 'NPM CI'
 
@@ -68,6 +71,7 @@ stages:
           onTimeout: reject
 
     - job: Deployment
+      dependsOn: ManualValidation
       steps:
       - download: current
         displayName: 'Download AngularApp'
