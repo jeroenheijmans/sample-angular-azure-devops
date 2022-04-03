@@ -1,39 +1,38 @@
 <p>Where you will find all sorts of items.</p>
 
-<hr class="my-5">
+<hr class="my-5" />
 
 <h1 class="text-5xl my-5">Get your items!</h1>
-<p>A page with a form to be filled out. For testing purposes. The form is purposely convoluted and slow. Also for testing purposes.</p>
+<p>
+  A page with a form to be filled out. For testing purposes. The form is
+  purposely convoluted and slow. Also for testing purposes.
+</p>
 <h2 class="text-3xl my-5">The Form</h2>
 <p>Please fill this out:</p>
 
-<form
-  class="my-5 p-5 border"
-  [formGroup]="itemsData"
-  (ngSubmit)="onSubmit"
->
+<form class="my-5 p-5 border" [formGroup]="itemsData" (ngSubmit)="(onSubmit)">
   <label for="name" class="block">Your name:</label>
-  <input type="text" id="name" formControlName="name">
+  <input type="text" id="name" formControlName="name" />
 
   <label for="petName" class="mt-3 block">Your pet's name:</label>
-  <input type="text" id="petName" formControlName="petName">
+  <input type="text" id="petName" formControlName="petName" />
 
   <label for="favoriteColor" class="mt-3 block">Your favorite color:</label>
   <label
     *ngFor="let color of availableColors"
     [for]="color.name"
-    class="block p-1 hover:cursor-pointer hover:bg-slate-200">
+    class="block p-1 hover:cursor-pointer hover:bg-slate-200"
+  >
     <input
       type="radio"
       [id]="color.name"
       [value]="color.name"
-      formControlName="favoriteColor">
-    {{color.name}}
+      formControlName="favoriteColor"
+    />
+    {{ color.name }}
   </label>
 
   <div class="mt-3">
-    <button type="submit" class="btn">
-      Submit
-    </button>
+    <button type="submit" class="btn">Submit</button>
   </div>
 </form>

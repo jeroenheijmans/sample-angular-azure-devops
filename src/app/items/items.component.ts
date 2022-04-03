@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
-  styleUrls: ['./items.component.scss']
+  styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent {
   itemsData = new FormGroup({
@@ -20,11 +20,9 @@ export class ItemsComponent {
     { name: 'yellow' },
   ];
 
-  constructor() { }
-
+  constructor() {}
 
   onSubmit() {
     // not implemented yet
   }
-
 }
