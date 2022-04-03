@@ -33,11 +33,17 @@ stages:
 
         - script: npm run test -- --no-watch --reporters="progress,junit" --code-coverage
           displayName: 'Angular test run'
-        
+
         - task: PublishTestResults@2
           displayName: 'Angular test result publication'
           inputs:
             testResultsFiles: 'TESTS-*.xml'
+
+        - task: PublishCodeCoverageResults@1
+          displayName: 'Angular test coverage publication'
+          inputs:
+            codeCoverageTool: 'Cobertura'
+            summaryFileLocation: '$(Build.SourcesDirectory)/coverage/**/cobertura-coverage.xml'
 
         - script: npm run build
           displayName: 'Angular build'
