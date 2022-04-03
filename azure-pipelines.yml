@@ -5,7 +5,8 @@ trigger:
      - main
   paths:
     exclude:
-      - '**/*.md'
+      - 'README.md'
+      - '*.md'
       - 'LICENSE'
 
 pool:
