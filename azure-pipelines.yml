@@ -49,5 +49,23 @@ stages:
           displayName: 'Angular build'
           
         - publish: '$(Build.SourcesDirectory)/dist/foo'
+          displayName: 'Publish Angular application'
           artifact: AngularApp
 
+  - stage: deployment
+    displayName: Deployment
+    jobs:
+    - job: Deployment
+      steps:
+      - task: ManualIntervention@8
+        displayName: 'Manual intervention'
+        inputs:
+          instructions: 'Please approve continuation of the pipeline using common sense.'
+          emailRecipients: 'sample-angular-azure-devops@jeroenheijmans.nl'
+      
+      - download: current
+        displayName: 'Download AngularApp'
+        artifact: AngularApp
+      
+      - script: dir *.* -recurse
+        displayName: 'Show folder contents for debugging'
