@@ -28,7 +28,7 @@ pool:
 variables:
   node_version: '16.x'
   npm_config_cache: $(Pipeline.Workspace)/.npm
-  is_main: $[eq(variables["Build.SourceBranch"], 'refs/heads/main')]
+  is_main: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
 stages:
   - stage: build
@@ -43,6 +43,7 @@ stages:
         
         - pwsh: Get-ChildItem -Path Env:\
           displayName: 'Show environment variables'
+          condition: false # Disabled by default
 
         - task: Cache@2
           displayName: 'NPM Cache'
