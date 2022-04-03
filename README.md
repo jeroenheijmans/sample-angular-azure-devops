@@ -16,6 +16,8 @@ The pipeline will exercise the following features:
 - Manual approval step
 - Deployment to cloud service (TODO)
 
+Using both Stages and Jobs from Azure Devops.
+
 ## Application features
 
 The Angular application does not do anything _meaningful_.
