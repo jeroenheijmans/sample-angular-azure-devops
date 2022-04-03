@@ -1,0 +1,38 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  nodeVersion: '16.x'
+
+stages:
+  - stage: build
+    displayName: Build
+    jobs:
+    - job: Build
+      steps:
+        - task: NodeTool@0
+          displayName: 'Node installation'
+          inputs:
+            versionSpec: $(nodeVersion)
+        
+        - task: Cache@2
+          displayName: 'NPM Cache'
+          inputs:
+            key: 'npm | "${Agent.OS)" | "${nodeVersion)" | package-lock.json'
+            path: $(npm_config_cache)
+        
+        - script: npm ci
+          displayName: 'NPM CI'
+        
+        - script: npm run lint
+          displayName: 'Angular linting'
+        
+        - script: npm run test -- --no-watch
+          displayName: 'Angular test'
+        
+        - script: npm run build
+          displayName: 'Angular build'
+
