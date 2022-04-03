@@ -106,7 +106,7 @@ stages:
         displayName: 'Download AngularApp'
         artifact: AngularApp
       
-      - powershell: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace) | Select UnixMode,LastWriteTime,Length,Name
+      - powershell: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace) | Select UnixMode,Length,FullName
         displayName: 'Show folder contents for debugging'
       
       # TODO: Actual deployment
