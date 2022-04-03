@@ -6,7 +6,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss']
 })
-export class ItemsComponent implements OnInit {
+export class ItemsComponent {
   itemsData = new FormGroup({
     name: new FormControl(),
     petName: new FormControl(),
@@ -22,8 +22,6 @@ export class ItemsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
 
   onSubmit() {
     // not implemented yet
