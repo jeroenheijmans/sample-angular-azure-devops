@@ -7,7 +7,7 @@ This sample will showcase how to set up an extended Azure Devops pipeline for an
 The pipeline will exercise the following features:
 
 - Node installation/updating
-- NPM package installation with caching
+- NPM package installation with Azure Devops caching
 - Angular linting
 - Angular unit and integration testing
 - Angular builds with sourcemap generation
