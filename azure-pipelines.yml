@@ -1,5 +1,12 @@
 trigger:
-- main
+  batch: true
+  branches:
+   include:
+     - main
+  paths:
+    exclude:
+      - '**/*.md'
+      - 'LICENSE'
 
 pool:
   vmImage: ubuntu-latest
