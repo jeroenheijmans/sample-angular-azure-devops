@@ -55,16 +55,17 @@ stages:
   - stage: deployment
     displayName: Deployment
     jobs:
-    - job: ManualIntervention
-      displayName: Manual Intervention
+    - job: ManualValidation
+      displayName: Manual Validation
       pool: server
       timeoutInMinutes: 1440 # 24 hours
       steps:
-      - task: ManualIntervention@8
-        displayName: 'Manual intervention'
+      - task: ManualValidation@0
+        displayName: 'Manual validation'
         inputs:
           instructions: 'Please approve continuation of the pipeline using common sense.'
-          emailRecipients: 'sample-angular-azure-devops@jeroenheijmans.nl'
+          notifyUsers: 'sample-angular-azure-devops@jeroenheijmans.nl'
+          onTimeout: reject
 
     - job: Deployment
       steps:
