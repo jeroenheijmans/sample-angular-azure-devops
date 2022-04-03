@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-items',
@@ -8,8 +8,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ItemsComponent {
   itemsData = new FormGroup({
-    name: new FormControl(),
-    petName: new FormControl(),
+    name: new FormControl('', [Validators.required]),
+    petName: new FormControl('', [Validators.required]),
     favoriteColor: new FormControl(),
   });
 
