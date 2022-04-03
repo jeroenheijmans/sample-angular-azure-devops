@@ -11,10 +11,10 @@ The pipeline will exercise the following features:
 - Angular linting
 - Angular unit and integration testing
 - Angular builds with sourcemap generation
-- Cypress end to end testing
+- Cypress end to end testing (TODO)
 - Artifact publishing
-- Deployment to cloud service
-- Manual approvals of stepS
+- Manual approval step
+- Deployment to cloud service (TODO)
 
 ## Application features
 
