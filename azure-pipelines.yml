@@ -77,7 +77,7 @@ stages:
         displayName: 'Download AngularApp'
         artifact: AngularApp
       
-      - pwsh: Get-ChildItem *.* -Recurse
+      - pwsh: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace)
         displayName: 'Show folder contents for debugging'
       
       # TODO: Actual deployment
