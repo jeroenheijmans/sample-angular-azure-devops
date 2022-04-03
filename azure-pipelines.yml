@@ -5,7 +5,8 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  nodeVersion: '16.x'
+  node_version: '16.x'
+  npm_config_cache: $(Pipeline.Workspace)/.npm
 
 stages:
   - stage: build
@@ -16,12 +17,12 @@ stages:
         - task: NodeTool@0
           displayName: 'Node installation'
           inputs:
-            versionSpec: $(nodeVersion)
+            versionSpec: $(node_version)
 
         - task: Cache@2
           displayName: 'NPM Cache'
           inputs:
-            key: 'npm | "$(Agent.OS)" | "$(nodeVersion)" | package-lock.json'
+            key: 'npm | "$(Agent.OS)" | "$(node_version)" | package-lock.json'
             path: $(npm_config_cache)
 
         - script: npm ci
@@ -31,7 +32,10 @@ stages:
           displayName: 'Angular linting'
 
         - script: npm run test -- --no-watch --reporters="progress,junit" --code-coverage
-          displayName: 'Angular test'
+          displayName: 'Angular test run'
+        
+        - task: PublishTestResults@2
+          displayName: 'Angular test result publication'
 
         - script: npm run build
           displayName: 'Angular build'
