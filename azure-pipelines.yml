@@ -29,7 +29,7 @@ variables:
   node_version: '16.x'
   npm_config_cache: $(Pipeline.Workspace)/.npm
   is_main: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
-  generate_source_maps: lower(variables.is_main) # script step requires lowercase boolean
+  generate_source_maps: $[lower(variables['is_main'])] # script step requires lowercase boolean
 
 stages:
   - stage: build
