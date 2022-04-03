@@ -77,7 +77,7 @@ stages:
         displayName: 'Download AngularApp'
         artifact: AngularApp
       
-      - powershell: tree /f
+      - pwsh: Get-ChildItem *.* -Recurse
         displayName: 'Show folder contents for debugging'
       
       # TODO: Actual deployment
