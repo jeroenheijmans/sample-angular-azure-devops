@@ -46,19 +46,6 @@ stages:
           displayName: 'Show environment variables'
           condition: false # Disabled by default
 
-        - powershell: |
-            # Based on https://stackoverflow.com/a/71729158/419956
-            $window = (Get-Host).UI.RawUI
-            $size = $window.BufferSize
-            $size.Width = 160
-            $window.BufferSize = $size
-            $size = $window.WindowSize
-            $size.Width = 160
-            $window.WindowSize = $size
-            # The actual intended script:
-            Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace)
-          displayName: 'Show folder contents for debugging'
-
         - task: Cache@2
           displayName: 'NPM Cache'
           inputs:
@@ -119,7 +106,7 @@ stages:
         displayName: 'Download AngularApp'
         artifact: AngularApp
       
-      - powershell: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace) | Select Mode,Length,Name
+      - powershell: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace) | Select UnixMode,LastWriteTime,Length,Name
         displayName: 'Show folder contents for debugging'
       
       # TODO: Actual deployment
