@@ -28,7 +28,7 @@ pool:
 variables:
   node_version: '16.x'
   npm_config_cache: $(Pipeline.Workspace)/.npm
-  is_main: lower($[eq(variables['Build.SourceBranch'], 'refs/heads/main')])
+  is_main: $[eq(variables.Build.SourceBranch, 'refs/heads/main')]
 
 stages:
   - stage: build
@@ -70,7 +70,7 @@ stages:
             codeCoverageTool: 'Cobertura'
             summaryFileLocation: '$(Build.SourcesDirectory)/coverage/**/cobertura-coverage.xml'
 
-        - script: npm run build -- --source-map=$(is_main)
+        - script: npm run build -- --source-map=$[lower(variables.is_main)]
           displayName: 'Angular build'
           
         - publish: '$(Build.SourcesDirectory)/dist/foo'
