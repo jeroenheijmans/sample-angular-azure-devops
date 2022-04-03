@@ -1,1 +1,17 @@
-<p>about works!</p>
+<p>Where you learn not much new about this application.</p>
+<hr class="my-5">
+<h1 class="text-5xl my-5">About your visit...</h1>
+<p>Actually, we can't tell you much about your visit. But we can have some fake collapsable FAQ items if you like?</p>
+<section class="my-5">
+  <div *ngFor="let faq of faqItems" class="my-3">
+    <h2 (click)="toggle(faq)"
+        class="text-2xl bold text-orange-600 hover:cursor-pointer hover:text-orange-400 hover:bg-slate-100">
+      {{faq.question}}
+      {{faq.expanded ? '▴' : '▾'}}
+    </h2>
+    <p [class]="faq.expanded ? 'max-h-full' : 'max-h-0'"
+       class="overflow-hidden transition-[max-height] ease-out">
+      {{faq.answer}}
+    </p>
+  </div>
+</section>

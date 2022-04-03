@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+}
+
+@layer components {
+  input[type=text] {
+    @apply border rounded block w-full my-1 py-1 px-2 text-gray-700;
+  }
+
+  .btn {
+    @apply border rounded p-2 bg-blue-200 hover:bg-blue-300;
+  }
+}
