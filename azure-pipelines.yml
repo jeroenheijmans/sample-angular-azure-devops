@@ -21,7 +21,7 @@ stages:
         - task: Cache@2
           displayName: 'NPM Cache'
           inputs:
-            key: 'npm | "${Agent.OS)" | "${nodeVersion)" | package-lock.json'
+            key: 'npm | "$(Agent.OS)" | "$(nodeVersion)" | package-lock.json'
             path: $(npm_config_cache)
         
         - script: npm ci
