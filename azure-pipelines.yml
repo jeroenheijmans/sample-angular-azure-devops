@@ -45,6 +45,9 @@ stages:
         - pwsh: Get-ChildItem -Path Env:\
           displayName: 'Show environment variables'
           condition: false # Disabled by default
+          
+        - powershell: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace) | Select Mode,Length,Name
+          displayName: 'Show folder contents for debugging'
 
         - task: Cache@2
           displayName: 'NPM Cache'
@@ -106,7 +109,7 @@ stages:
         displayName: 'Download AngularApp'
         artifact: AngularApp
       
-      - powershell: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace)
+      - powershell: Get-ChildItem *.* -Recurse -Path $(Pipeline.Workspace) | Select Mode,Length,Name
         displayName: 'Show folder contents for debugging'
       
       # TODO: Actual deployment
