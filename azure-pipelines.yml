@@ -36,6 +36,8 @@ stages:
         
         - task: PublishTestResults@2
           displayName: 'Angular test result publication'
+          inputs:
+            testResultsFiles: 'TESTS-*.xml'
 
         - script: npm run build
           displayName: 'Angular build'
