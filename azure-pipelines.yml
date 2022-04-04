@@ -29,7 +29,7 @@ variables:
   node_version: '16.x'
   npm_config_cache: $(Pipeline.Workspace)/.npm
   is_main: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
-  generate_source_maps: $[lower(variables['is_main'])] # script step requires lowercase boolean
+  generate_source_maps: $[lower(variables['is_main'])] # script step requires lowercase boolean, see https://stackoverflow.com/q/71729210/419956
 
 stages:
   - stage: build
@@ -57,9 +57,6 @@ stages:
 
         - script: npm ci
           displayName: 'NPM CI'
-        
-        - script: npm run build -- --source-map=$(echo "$(is_main)" | tr "[:upper:]" "[:lower:]")
-          displayName: Test suggestion from SO
 
         - script: npm run lint
           displayName: 'Angular linting'
