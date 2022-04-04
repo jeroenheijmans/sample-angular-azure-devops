@@ -57,6 +57,9 @@ stages:
 
         - script: npm ci
           displayName: 'NPM CI'
+        
+        - script: npm run build -- --source-map=$(echo "$(is_main)" | tr "[:upper:]" "[:lower:]")
+          displayName: Test suggestion from SO
 
         - script: npm run lint
           displayName: 'Angular linting'
