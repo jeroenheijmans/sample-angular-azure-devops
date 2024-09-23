@@ -2,6 +2,10 @@
 
 This sample will showcase how to set up an extended Azure Devops pipeline for an Angular application.
 
+## ⚠️ Notice about updates
+
+Note that this repository is provided "as-is" and will most likely not receive any (security) updates.
+
 ## Pipeline features
 
 The pipeline will exercise the following features:
